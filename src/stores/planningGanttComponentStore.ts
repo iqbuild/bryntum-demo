@@ -76,8 +76,8 @@ export const usePlanningGanttComponentStore = defineStore<
   const isEditMode = ref(true)
   const isExpanded = ref(false)
   const zoomLevel = ref(DEFAULT_ZOOM)
-  const useCriticalPath = ref(false)
-  const useBaseLines = ref(false)
+  const useCriticalPath = ref(true)
+  const useBaseLines = ref(true)
 
   const tasksData = ref<ITaskModel[]>([])
   const dependenciesData = ref<DependencyStore[]>([])

@@ -7,7 +7,7 @@ import EsLocale from '@bryntum/gantt/locales/gantt.locale.Es.js'
 import { BryntumGantt } from '@bryntum/gantt-vue-3'
 import { round } from 'lodash'
 import { type BryntumGanttProps } from '@bryntum/gantt-vue-3'
-import moment from 'moment-timezone'
+import { format as formatDate, addDay } from '@formkit/tempo'
 
 import { usePlanningGanttComponentStore } from '@/stores/planningGanttComponentStore'
 import { onBeforeUnmount, ref, watch, defineEmits } from 'vue'
@@ -45,7 +45,7 @@ const {
 
 const isMounted = ref(false)
 
-const lastControlDate = ref<string>(moment().format('DD-MM-YYYY'))
+const lastControlDate = ref<Date>(new Date())
 
 const getTextCellStyle = (value: string, level: number) => {
   if (level === 0) {
@@ -62,7 +62,7 @@ const getTextCellStyle = (value: string, level: number) => {
 
 const getDateCellStyle = (value: string, level: number) => {
   const timezone = 'America/Santiago'
-  const date = moment.tz(value, timezone).format('DD/MM/YYYY')
+  const date = formatDate({ date: new Date(), format: 'DD-MM-YYYY', tz: timezone })
 
   if (level === 0) {
     return `<b>${date}</b>`
@@ -83,8 +83,8 @@ const ganttConfig = reactive<BryntumGanttProps>({
   barMargin: 8,
   weekStartDay: 1,
   readOnly: !isEditMode,
-  minDate: moment(FIRST_LEVELS[0].startDate).subtract(2, 'w').toDate(),
-  maxDate: moment(FIRST_LEVELS[0].endDate).add(12, 'w').toDate(),
+  minDate: addDay(FIRST_LEVELS[0].startDate, -2 * 7),
+  maxDate: addDay(FIRST_LEVELS[0].endDate, 12 * 7),
   listeners: {
     beforeTaskAdd: (task) => {
       console.log(task)
@@ -112,7 +112,7 @@ const ganttConfig = reactive<BryntumGanttProps>({
   timeRanges: [
     {
       id: 1,
-      name: moment(lastControlDate.value).format('DD-MM-YYYY'),
+      name: formatDate(lastControlDate.value, 'DD-MM-YYYY'),
       startDate: lastControlDate.value,
       cls: 'lastControlDate',
     },
