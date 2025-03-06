@@ -1,39 +1,27 @@
-# bryntum-demo
+# Bryntum Demo
 
-This template should help get you started developing with Vue 3 in Vite.
+## Requirements
 
-## Recommended IDE Setup
+Make sure you have the following tools installed:
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- **Yarn**: version 1.22.22
+- **Node.js**: version 20 or higher
 
-## Type Support for `.vue` Imports in TS
+## Steps to Run the Project
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+1. **Install dependencies**
 
-## Customize configuration
+   Open a terminal in the project directory and run the following command to install all required dependencies:
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+   ```bash
+   yarn install
 
-## Project Setup
+   ```
 
-```sh
-yarn
-```
+2. **Start the development server**
 
-### Compile and Hot-Reload for Development
+   To start the development server, run:
 
-```sh
-yarn dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-yarn build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-yarn lint
-```
+   ```bash
+   yarn dev
+   ```
