@@ -71,7 +71,8 @@ export const usePlanningGanttComponentStore = defineStore<
   const planningGanttDataStore = usePlanningGanttDataStore()
   const { startingLevels } = storeToRefs(planningGanttDataStore)
 
-  const ganttInstance = ref<GanttBase | null>(null)
+  // @ts-expect-error ganttInstance should be initialize as a empty object
+  const ganttInstance: Ref<GanttBase | null> = {}
 
   const isEditMode = ref(true)
   const isExpanded = ref(false)
