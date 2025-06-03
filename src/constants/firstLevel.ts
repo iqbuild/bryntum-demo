@@ -16,6 +16,7 @@ export const FIRST_LEVELS: IBryntumTaskSummary[] = [
     type: 'Project',
     draggable: false,
     manuallyScheduled: true,
+    calendar: 'general',
     expanded: false,
     baselines: [
       {
@@ -48,6 +49,7 @@ export const FIRST_LEVELS: IBryntumTaskSummary[] = [
         ExternalTask: true,
         isSelectable: false,
         manuallyScheduled: true,
+        calendar: 'general',
         children: [
           {
             draggable: false,
@@ -55,6 +57,7 @@ export const FIRST_LEVELS: IBryntumTaskSummary[] = [
             ExternalTask: true,
             isSelectable: false,
             manuallyScheduled: true,
+            calendar: 'general',
             children: [],
             real: '100%',
             prog: '100%',
@@ -104,6 +107,7 @@ export const FIRST_LEVELS: IBryntumTaskSummary[] = [
             ExternalTask: true,
             isSelectable: false,
             manuallyScheduled: true,
+            calendar: 'general',
             children: [],
             real: '74.23%',
             prog: '75.64%',
@@ -153,6 +157,7 @@ export const FIRST_LEVELS: IBryntumTaskSummary[] = [
             ExternalTask: true,
             isSelectable: false,
             manuallyScheduled: true,
+            calendar: 'general',
             children: [],
             real: '100%',
             prog: '100%',
@@ -245,6 +250,7 @@ export const FIRST_LEVELS: IBryntumTaskSummary[] = [
         ExternalTask: true,
         isSelectable: false,
         manuallyScheduled: true,
+        calendar: 'general',
         children: [
           {
             draggable: false,
@@ -252,6 +258,7 @@ export const FIRST_LEVELS: IBryntumTaskSummary[] = [
             ExternalTask: true,
             isSelectable: false,
             manuallyScheduled: true,
+            calendar: 'general',
             children: [],
             real: '43%',
             prog: '45.85%',
@@ -301,6 +308,7 @@ export const FIRST_LEVELS: IBryntumTaskSummary[] = [
             ExternalTask: true,
             isSelectable: false,
             manuallyScheduled: true,
+            calendar: 'general',
             children: [],
             real: '100%',
             prog: '100%',

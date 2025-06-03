@@ -13,8 +13,8 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@bryntum/gantt": "^6.1.7",
-    "@bryntum/gantt-vue-3": "^6.1.7",
+    "@bryntum/gantt": "^6.2.3",
+    "@bryntum/gantt-vue-3": "^6.2.3",
     "@formkit/tempo": "^0.1.2",
     "@primeuix/themes": "^1.0.0",
     "lodash": "^4.17.21",

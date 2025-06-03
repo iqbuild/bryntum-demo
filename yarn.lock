@@ -266,15 +266,15 @@
   resolved "https://npm.bryntum.com/@bryntum%2fgantt-lib/-/gantt-lib-1.0.0.tgz#9ad1230b0e3994273da2037e2b6e78116abf261b"
   integrity sha512-UsOPgxAenOX5J8B82ml1g6Ik9OMxiNF6I7eDBOVZOtAsyI2AVvhDel0bavoQ70vcWAtTr4LWjNGJNyCTjz8PIA==
 
-"@bryntum/gantt-vue-3@^6.1.7":
-  version "6.1.7"
-  resolved "https://npm.bryntum.com/@bryntum/gantt-vue-3/-/gantt-vue-3-6.1.7.tgz#487bbbe1578ecd8cfbaf0c446263351600ea0ada"
-  integrity sha512-fpPTK0O2+etFypsEAArj0mnCVhMoUPgCHnZrvtdAIB0YTsfEeT52tX5KpBNq+rS004oTaUB3TGYVCpcf7vxSIA==
+"@bryntum/gantt-vue-3@^6.2.3":
+  version "6.2.3"
+  resolved "https://npm.bryntum.com/@bryntum/gantt-vue-3/-/gantt-vue-3-6.2.3.tgz#bad9d2c85129f0241b4af8ae8b3b3db4b172ccc8"
+  integrity sha512-KwzIT1eV3FM89LKimH3gyBG6tm8qMtCJOhXWZsl7Ucfngt7pZ/re4h7rm/0bGbNR6dHPOtb5wRWVVDjHW+InMA==
 
-"@bryntum/gantt@^6.1.7":
-  version "6.1.7"
-  resolved "https://npm.bryntum.com/@bryntum/gantt/-/gantt-6.1.7.tgz#67d9f37a881d3204446c86d39dfb98f09b73db03"
-  integrity sha512-+qencHyHHfdPVLYbzOzaQjE8mAk9CN1bXrbF0czVhNBGBWL5zuaOvYQvmHHc4PglR51+2tHHyDMEVhGoBRUYpw==
+"@bryntum/gantt@^6.2.3":
+  version "6.2.3"
+  resolved "https://npm.bryntum.com/@bryntum/gantt/-/gantt-6.2.3.tgz#0eb1f35be587ed5a190f3a0bff85ca07c4877c40"
+  integrity sha512-VbsbqeLyVdQGZ5BjyYPvqGPz4+foheSBsr/RZNVWOT9dh6Wqz9Q/lZoNYhSQOlsxc25VYLgqIEWUdNmDnodwaA==
   dependencies:
     "@bryntum/gantt-lib" "1.0.0"
 

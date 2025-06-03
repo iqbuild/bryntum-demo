@@ -11,15 +11,15 @@ import { storeToRefs } from 'pinia'
 
 const planningGanttDataStore = usePlanningGanttDataStore()
 const planningGanttComponentStore = usePlanningGanttComponentStore()
-const { isExpanded, useCriticalPath, useBaseLines } = storeToRefs(planningGanttComponentStore)
+const { isExpanded, useCriticalPath, useBaseLines, columns } = storeToRefs(
+  planningGanttComponentStore,
+)
 
 const isLoadingData = ref<boolean>(true)
 const isMounted = ref<boolean>(false)
 const selectedColumns = computed(() => {
-  const columns = planningGanttComponentStore.getGanttColumns()
-  return columns.filter((column) => column.checked).map((column) => column.field)
+  return columns.value.filter((column) => column.checked).map((column) => column.field)
 })
-const columns = computed(() => planningGanttComponentStore.getGanttColumns())
 
 const reloadGantt = async () => {
   isLoadingData.value = true

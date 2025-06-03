@@ -45,6 +45,7 @@ export interface IBryntumTask extends IBryntumTaskCurveValues {
   ExternalTask: boolean
   isSelectable: boolean
   manuallyScheduled: boolean
+  calendar: string
   type: EntityType
   cls: 'successPhaseGrouper'
   parentId: string
@@ -57,6 +58,7 @@ export interface IBryntumTaskSummary extends IBryntumTaskCurveValues {
   level: number
   baselines: IBryntumTaskBaseline[]
   manuallyScheduled: boolean
+  calendar: string
   expanded: boolean
   draggable: boolean
   type: EntityType

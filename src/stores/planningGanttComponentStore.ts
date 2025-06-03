@@ -7,7 +7,7 @@ import type {
   DependencyStore,
   ResourceModel,
   AssignmentModel,
-  CalendarModel,
+  CalendarModelConfig,
 } from '@bryntum/gantt'
 import type { Ref } from 'vue'
 import { usePlanningGanttDataStore } from './planningGanttDataStore'
@@ -37,9 +37,10 @@ export interface PlanningGanttComponentStore {
   dependenciesData: Ref<DependencyStore[]>
   resourcesData: Ref<ResourceModel[]>
   assignmentsData: Ref<AssignmentModel[]>
-  calendarsData: Ref<CalendarModel[]>
+  calendarsData: Ref<CalendarModelConfig[]>
 
   ganttInstance: Ref<GanttBase | null>
+  columns: Ref<IGanttColumn[]>
   isEditMode: Ref<boolean>
   zoomLevel: Ref<number>
   isExpanded: Ref<boolean>
@@ -74,6 +75,7 @@ export const usePlanningGanttComponentStore = defineStore<
   // @ts-expect-error ganttInstance should be initialize as a empty object
   const ganttInstance: Ref<GanttBase | null> = {}
 
+  const columns = ref<IGanttColumn[]>([])
   const isEditMode = ref(true)
   const isExpanded = ref(false)
   const zoomLevel = ref(DEFAULT_ZOOM)
@@ -84,7 +86,30 @@ export const usePlanningGanttComponentStore = defineStore<
   const dependenciesData = ref<DependencyStore[]>([])
   const resourcesData = ref<ResourceModel[]>([])
   const assignmentsData = ref<AssignmentModel[]>([])
-  const calendarsData = ref<CalendarModel[]>([])
+  const calendarsData = ref<CalendarModelConfig[]>([
+    {
+      id: 'general',
+      name: 'General',
+      cls: 'dayshift',
+      intervals: [
+        {
+          recurrentStartDate: 'on Sat at 0:00',
+          recurrentEndDate: 'on Mon at 0:00',
+          isWorking: false,
+        },
+        {
+          startDate: new Date('2024-07-07T00:00:00.000Z'),
+          endDate: new Date('2024-07-11T00:00:00.000Z'),
+          isWorking: false,
+        },
+        {
+          startDate: new Date('2024-07-18T00:00:00.000Z'),
+          endDate: new Date('2024-07-20T00:00:00.000Z'),
+          isWorking: false,
+        },
+      ],
+    },
+  ])
 
   const setIsEditMode = () => {
     if (ganttInstance.value) {
@@ -101,15 +126,18 @@ export const usePlanningGanttComponentStore = defineStore<
   const decreaseZoom = () => {
     if (zoomLevel.value <= 0) return
     zoomLevel.value -= 1
+    console.log({ calendarsData: ganttInstance.value?.calendars })
   }
 
   const toggleCriticalPath = () => {
     useCriticalPath.value = !useCriticalPath.value
   }
 
-  const getGanttColumns = (): IGanttColumn[] => {
+  const setGanttColumns = (): Ref<IGanttColumn[]> => {
+    columns.value = []
+
     if (ganttInstance.value) {
-      return (
+      columns.value =
         (ganttInstance.value.columns as ColumnStore[])
           ?.map(
             (column, index) =>
@@ -124,27 +152,18 @@ export const usePlanningGanttComponentStore = defineStore<
               }) as IGanttColumn,
           )
           .filter((column) => column.text) || []
-      )
     }
 
-    return []
+    return columns
   }
 
-  const toggleColumn = (columnsSelected: GanttColumn[]) => {
+  const toggleColumn = (columnName: GanttColumn[]) => {
     if (ganttInstance.value) {
-      const columns = getGanttColumns()
-
-      columns.forEach((column) => {
-        // @ts-expect-error get exists in columns data
-        const ganttColumn = ganttInstance.value?.columns.get(column.field)
-        if (ganttColumn) {
-          if (columnsSelected.includes(column.field)) {
-            ganttColumn.hidden = false
-          } else {
-            ganttColumn.hidden = true
-          }
-        }
-      })
+      // @ts-expect-error get exists in columns data
+      const ganttColumn = ganttInstance.value.columns.get(columnName)
+      if (ganttColumn) {
+        ganttColumn.hidden = !ganttColumn.hidden
+      }
     }
   }
 
@@ -231,6 +250,7 @@ export const usePlanningGanttComponentStore = defineStore<
     calendarsData,
 
     ganttInstance,
+    columns,
     isEditMode,
     zoomLevel,
     isExpanded,
@@ -241,7 +261,7 @@ export const usePlanningGanttComponentStore = defineStore<
     setIsEditMode,
     increaseZoom,
     decreaseZoom,
-    getGanttColumns,
+    setGanttColumns,
     toggleCriticalPath,
     toggleColumn,
     toggleBaselines,

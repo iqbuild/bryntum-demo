@@ -30,8 +30,14 @@ const emit = defineEmits([
 ])
 
 const planningGanttStore = usePlanningGanttComponentStore()
-const { isEditMode, setGanttInstance, getGanttInstance, getInitialData, loadSubLevel } =
-  planningGanttStore
+const {
+  isEditMode,
+  setGanttInstance,
+  getGanttInstance,
+  setGanttColumns,
+  getInitialData,
+  loadSubLevel,
+} = planningGanttStore
 const {
   tasksData,
   dependenciesData,
@@ -90,6 +96,16 @@ const ganttConfig = reactive<BryntumGanttProps>({
       console.log(task)
     },
   },
+  zoomKeepsOriginalTimespan: true,
+  nonWorkingTimeFeature: {
+    disabled: false,
+    maxTimeAxisUnit: 'year',
+  },
+  taskNonWorkingTimeFeature: {
+    disabled: false,
+    mode: 'both',
+    maxTimeAxisUnit: 'year',
+  },
   timeRangesFeature: {
     disabled: false,
   },
@@ -104,7 +120,7 @@ const ganttConfig = reactive<BryntumGanttProps>({
   },
   project: {
     autoSetConstraints: true, // automatically introduce `startnoearlier` constraint if tasks do not use constraints, dependencies, or manuallyScheduled
-    calendars: calendarsData,
+    calendars: calendarsData.value,
     assignments: assignmentsData,
     resources: resourcesData,
     dependencies: dependenciesData,
@@ -282,6 +298,16 @@ const ganttConfig = reactive<BryntumGanttProps>({
         return `<div style="color: ${value >= 0 ? '#25c726' : '#de0000'} !important;">${value}%</div>`
       },
     },
+    {
+      text: 'Predecesor',
+      type: 'predecessor',
+      width: 112,
+    },
+    {
+      text: 'Sucesor',
+      type: 'successor',
+      width: 112,
+    },
   ],
 
   // Custom task content, display task name on child tasks
@@ -321,6 +347,7 @@ watch(
       if (ganttInstance.value) {
         ganttInstance.value.expand(FIRST_LEVELS[0].id)
         ganttInstance.value.zoomLevel = zoomLevel.value
+        setGanttColumns()
 
         // ganttInstance.value.timeZone =
         // projectSelected.value?.timezone || 'America/Santiago';
@@ -409,5 +436,9 @@ onBeforeUnmount(() => {
 .b-sch-line.lastControlDate {
   background-color: red !important;
   border-color: red !important;
+}
+
+.dayshift {
+  background-color: rgba(220, 187, 96, 0.24) !important;
 }
 </style>
